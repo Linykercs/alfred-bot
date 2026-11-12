@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alfred · Componentes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/alfred.css">
+<script>try{var t=localStorage.getItem('alfred-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<style>
+  .doc { max-width: 1080px; margin: 0 auto; padding: var(--s-12) var(--s-8) var(--s-16); }
+  .doc-head { display:flex; align-items:flex-start; justify-content:space-between; gap:var(--s-4); margin-bottom:var(--s-12); }
+  .breadcrumb { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-3); margin-bottom:14px; }
+  .breadcrumb a:hover { color:var(--text); }
+  .sec { margin-top:var(--s-12); }
+  .sec__title { display:flex; align-items:baseline; gap:12px; margin-bottom:var(--s-5); padding-bottom:12px; border-bottom:1px solid var(--border); }
+  .sec__title h2 { font-size:var(--fs-h2); font-weight:620; letter-spacing:-.02em; }
+  .sec__title .tag { font-family:ui-monospace,Menlo,monospace; font-size:12px; color:var(--green); background:var(--green-soft); padding:3px 8px; border-radius:6px; }
+  .comp-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:var(--s-4); }
+  .frame { border:1px solid var(--border); border-radius:var(--r-lg); overflow:hidden; background:var(--surface); }
+  .frame__bar { display:flex; align-items:center; justify-content:space-between; padding:10px 14px; border-bottom:1px solid var(--border); background:var(--surface-2); }
+  .frame__name { font-family:ui-monospace,Menlo,monospace; font-size:12px; font-weight:600; }
+  .frame__hint { font-size:11px; color:var(--text-3); }
+  .frame__body { padding:var(--s-6); display:flex; align-items:center; justify-content:center; gap:var(--s-3); flex-wrap:wrap; min-height:96px; background:
+    repeating-linear-gradient(45deg, var(--bg-subtle), var(--bg-subtle) 9px, transparent 9px, transparent 18px); }
+  .frame__body.col { flex-direction:column; align-items:stretch; }
+  .frame--wide { grid-column:1/-1; }
+  .frame__body.left { justify-content:flex-start; }
+</style>
+</head>
+<body>
+<button class="theme-toggle" data-theme-toggle aria-label="Alternar tema" style="position:fixed;top:20px;right:20px;z-index:5">
+  <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+  <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+</button>
+
+<div class="doc" data-screen-label="Componentes">
+  <header class="doc-head">
+    <div>
+      <div class="breadcrumb"><a href="index.html">Alfred</a> / <span>Biblioteca de componentes</span></div>
+      <h1 class="t-display">Componentes</h1>
+      <p class="t-body text-2" style="max-width:520px;margin-top:10px">Cada elemento isolado e nomeado em inglês — pronto pra virar componente React + Tailwind. Os estados (hover, active, disabled) estão documentados.</p>
+    </div>
+    <a class="btn btn--secondary" href="Design System.html">Ver design system →</a>
+  </header>
+
+  <!-- LOGO -->
+  <section class="sec">
+    <div class="sec__title"><h2>Marca</h2><span class="tag">AlfredLogo</span></div>
+    <div class="comp-grid">
+      <div class="frame"><div class="frame__bar"><span class="frame__name">AlfredLogo</span><span class="frame__hint">símbolo + wordmark</span></div>
+        <div class="frame__body"><span class="logo"><span class="logo__mark"><svg viewBox="0 0 24 24" fill="none"><path d="M5.5 19 12 4.5 18.5 19" stroke="#07140E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.7 13.4H15.3" stroke="#07140E" stroke-width="2.4" stroke-linecap="round"/></svg></span><span class="logo__word">Alfred</span></span></div>
+      </div>
+      <div class="frame"><div class="frame__bar"><span class="frame__name">AlfredLogo · mark</span><span class="frame__hint">monograma "A"</span></div>
+        <div class="frame__body"><span class="logo__mark logo__mark--lg"><svg viewBox="0 0 24 24" fill="none"><path d="M5.5 19 12 4.5 18.5 19" stroke="#07140E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.7 13.4H15.3" stroke="#07140E" stroke-width="2.4" stroke-linecap="round"/></svg></span></div>
+      </div>
+      <div class="frame"><div class="frame__bar"><span class="frame__name">Avatar</span><span class="frame__hint">iniciais</span></div>
+        <div class="frame__body"><span class="avatar" style="width:30px;height:30px">F</span><span class="avatar" style="width:40px;height:40px;font-size:15px">F</span><span class="avatar" style="width:52px;height:52px;font-size:19px">F</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUTTONS -->
+  <section class="sec">
+    <div class="sec__title"><h2>Botões</h2><span class="tag">Button</span></div>
+    <div class="comp-grid">
+      <div class="frame"><div class="frame__bar"><span class="frame__name">Button · primary</span><span class="frame__hint">default</span></div><div class="frame__body"><button class="btn btn--primary">Começar</button></div></div>
+      <div class="frame"><div class="frame__bar"><span class="frame__name">Button · primary</span><span class="frame__hint">:hover</span></div><div class="frame__body"><button class="btn btn--primary" style="background:var(--green-strong)">Começar</button></div></div>
+      <div class="frame"><div class="frame__bar"><span class="frame__name">Button · primary</span><span class="frame__hint">[disabled]</span></div><div class="frame__body"><button class="btn btn--primary is-disabled">Começar</button></div></div>
+      <div class="frame"><div class="frame__bar"><span class="frame__name">Button · secondary</span><span class="frame__hint">default / hover</span></div><div class="frame__body"><button class="btn btn--secondary">Ajustar metas</button><button class="btn btn--secondary" style="background:var(--surface-3);border-color:var(--border-strong)">hover</button></div></div>
+      <div class="frame"><div class="frame__bar"><span class="frame__name">Button · ghost</span><span class="frame__hint">default / hover</span></div><div class="frame__body"><button class="btn btn--ghost">Ver todas</button><button class="btn btn--ghost" style="background:var(--surface-2);color:var(--text)">hover</button></div></div>
+      <div class="frame"><div class="frame__bar"><span class="frame__name">Button · lg + icon</span><span class="frame__hint">CTA</span></div><div class="frame__body"><button class="btn btn--primary btn--lg">Concluir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>
+    </div>
+  </section>
+
+  <!-- CATEGORY PILL -->
+  <section class="sec">
+    <div class="sec__title"><h2>Pills de categoria</h2><span class="tag">CategoryPill</span></div>
+    <div class="frame frame--wide"><div class="frame__bar"><span class="frame__name">CategoryPill</span><span class="frame__hint">data-cat="food | transport | housing | health | leisure | education | other"</span></div>
+      <div class="frame__body" style="gap:12px">
+        <span class="category-pill" data-cat="food"><span class="dot"></span>Alimentação</span>
+        <span class="category-pill" data-cat="transport"><span class="dot"></span>Transporte</span>
+        <span class="category-pill" data-cat="housing"><span class="dot"></span>Moradia</span>
+        <span class="category-pill" data-cat="health"><span class="dot"></span>Saúde</span>
+        <span class="category-pill" data-cat="leisure"><span class="dot"></span>Lazer</span>
+        <span class="category-pill" data-cat="education"><span class="dot"></span>Educação</span>
+        <span class="category-pill" data-cat="other"><span class="dot"></span>Outros</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUMMARY CARD -->
+  <section class="sec">
+    <div class="sec__title"><h2>Cards de resumo</h2><span class="tag">SummaryCard</span></div>
+    <div class="comp-grid">
+      <div class="frame"><div class="frame__bar"><span class="frame__name">SummaryCard · value</span><span class="frame__hint">moeda</span></div>
+        <div class="frame__body"><article class="summary-card" style="width:100%"><div class="summary-card__top"><span class="summary-card__label">Total do mês</span><span class="summary-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"/><path d="M3 7V5a1 1 0 0 1 1-1h13l4 3"/></svg></span></div><div class="summary-card__value num">R$ 1.240<small>,00</small></div><div class="summary-card__meta">5 categorias</div></article></div>
+      </div>
+      <div class="frame"><div class="frame__bar"><span class="frame__name">SummaryCard · delta</span><span class="frame__hint">StatDelta</span></div>
+        <div class="frame__body"><article class="summary-card" style="width:100%"><div class="summary-card__top"><span class="summary-card__label">vs. mês anterior</span></div><div class="summary-card__value num text-green">−5,3%</div><div class="summary-card__meta"><span class="delta delta--up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>−R$ 70</span></div></article></div>
+      </div>
+      <div class="frame"><div class="frame__bar"><span class="frame__name">ScoreGauge</span><span class="frame__hint">0–100</span></div>
+        <div class="frame__body"><div class="score-gauge"><div class="gauge"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15.9155" fill="none" stroke="var(--surface-3)" stroke-width="3.4"/><circle cx="18" cy="18" r="15.9155" fill="none" stroke="var(--green)" stroke-width="3.4" stroke-linecap="round" stroke-dasharray="74 26" stroke-dashoffset="25" transform="rotate(-90 18 18)"/></svg><div class="gauge__center"><span class="v num">74</span><span class="l">/100</span></div></div><div class="stack gap-1"><span class="delta delta--up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>+8</span><span style="font-size:12px;color:var(--text-3)">melhorando</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATDELTA -->
+  <section class="sec">
+    <div class="sec__title"><h2>Indicadores</h2><span class="tag">StatDelta · StatusChip</span></div>
+    <div class="frame frame--wide"><div class="frame__bar"><span class="frame__name">StatDelta / StatusChip</span><span class="frame__hint">up · down · flat · status</span></div>
+      <div class="frame__body" style="gap:20px">
+        <span class="delta delta--up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>+8 pontos</span>
+        <span class="delta delta--down"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>−12%</span>
+        <span class="delta delta--flat">estável</span>
+        <span class="status-chip"><span class="dot"></span>WhatsApp conectado</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUDGET BAR -->
+  <section class="sec">
+    <div class="sec__title"><h2>Barra de orçamento</h2><span class="tag">BudgetBar</span></div>
+    <div class="comp-grid">
+      <div class="frame"><div class="frame__bar"><span class="frame__name">BudgetBar</span><span class="frame__hint">data-status="ok"</span></div>
+        <div class="frame__body col"><div class="budget-bar" data-status="ok"><div class="budget-bar__head"><span class="budget-bar__name"><span class="swatch sw-transport"></span>Transporte</span><span class="budget-bar__pct text-2">69%</span></div><div class="budget-bar__track"><div class="budget-bar__fill" style="width:69%"></div></div><div class="budget-bar__foot"><span class="budget-bar__values"><b>R$ 310</b> / R$ 450</span><span class="budget-status" data-status="ok">No limite</span></div></div></div>
+      </div>
+      <div class="frame"><div class="frame__bar"><span class="frame__name">BudgetBar</span><span class="frame__hint">data-status="warn"</span></div>
+        <div class="frame__body col"><div class="budget-bar" data-status="warn"><div class="budget-bar__head"><span class="budget-bar__name"><span class="swatch sw-food"></span>Alimentação</span><span class="budget-bar__pct" style="color:var(--yellow)">96%</span></div><div class="budget-bar__track"><div class="budget-bar__fill" style="width:96%"></div></div><div class="budget-bar__foot"><span class="budget-bar__values"><b>R$ 480</b> / R$ 500</span><span class="budget-status" data-status="warn">Atenção</span></div></div></div>
+      </div>
+      <div class="frame"><div class="frame__bar"><span class="frame__name">BudgetBar</span><span class="frame__hint">data-status="over"</span></div>
+        <div class="frame__body col"><div class="budget-bar" data-status="over"><div class="budget-bar__head"><span class="budget-bar__name"><span class="swatch sw-leisure"></span>Lazer</span><span class="budget-bar__pct text-red">120%</span></div><div class="budget-bar__track"><div class="budget-bar__fill" style="width:100%"></div></div><div class="budget-bar__foot"><span class="budget-bar__values"><b>R$ 120</b> / R$ 100</span><span class="budget-status" data-status="over">Estourou</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSACTION -->
+  <section class="sec">
+    <div class="sec__title"><h2>Transações</h2><span class="tag">TransactionRow · TransactionList</span></div>
+    <div class="frame frame--wide"><div class="frame__bar"><span class="frame__name">TransactionList</span><span class="frame__hint">map(TransactionRow)</span></div>
+      <div class="frame__body col" style="padding:14px var(--s-5)">
+        <div class="transaction-list">
+          <div class="transaction"><span class="transaction__icon" data-cat="food"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V3M6 12v9M15 3c-1.5 1-2 3-2 5s.5 3 2 3h1V3z"/></svg></span><div class="transaction__main"><span class="transaction__desc">iFood · Almoço</span><span class="transaction__sub"><span class="category-pill" data-cat="food"><span class="dot"></span>Alimentação</span></span></div><span class="transaction__amount num">−R$ 47,90</span></div>
+          <div class="transaction"><span class="transaction__icon" data-cat="transport"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16 6.5 8.5A2 2 0 0 1 8.5 7h7a2 2 0 0 1 2 1.5L19 16M5 16h14M5 16v3M19 16v3"/></svg></span><div class="transaction__main"><span class="transaction__desc">Uber · Centro</span><span class="transaction__sub"><span class="category-pill" data-cat="transport"><span class="dot"></span>Transporte</span></span></div><span class="transaction__amount num">−R$ 23,50</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHARTS -->
+  <section class="sec">
+    <div class="sec__title"><h2>Gráficos</h2><span class="tag">CategoryChart · TrendChart</span></div>
+    <div class="comp-grid">
+      <div class="frame"><div class="frame__bar"><span class="frame__name">CategoryChart</span><span class="frame__hint">donut + legend</span></div>
+        <div class="frame__body"><div class="donut" style="width:140px;height:140px"><svg viewBox="0 0 36 36">
+          <circle cx="18" cy="18" r="15.9155" fill="none" stroke="var(--cat-food)" stroke-width="4" stroke-dasharray="39 61" stroke-dashoffset="25" transform="rotate(-90 18 18)"/>
+          <circle cx="18" cy="18" r="15.9155" fill="none" stroke="var(--cat-transport)" stroke-width="4" stroke-dasharray="25 75" stroke-dashoffset="86" transform="rotate(-90 18 18)"/>
+          <circle cx="18" cy="18" r="15.9155" fill="none" stroke="var(--cat-housing)" stroke-width="4" stroke-dasharray="20 80" stroke-dashoffset="61" transform="rotate(-90 18 18)"/>
+          <circle cx="18" cy="18" r="15.9155" fill="none" stroke="var(--cat-leisure)" stroke-width="4" stroke-dasharray="10 90" stroke-dashoffset="41" transform="rotate(-90 18 18)"/>
+          <circle cx="18" cy="18" r="15.9155" fill="none" stroke="var(--cat-other)" stroke-width="4" stroke-dasharray="6 94" stroke-dashoffset="31" transform="rotate(-90 18 18)"/>
+        </svg><div class="donut__center"><span class="v num" style="font-size:18px">R$ 1.240</span><span class="l">total</span></div></div></div>
+      </div>
+      <div class="frame"><div class="frame__bar"><span class="frame__name">TrendChart</span><span class="frame__hint">linha · 6 meses</span></div>
+        <div class="frame__body col" style="justify-content:center"><div class="trend-chart"><svg viewBox="0 0 320 150" preserveAspectRatio="none"><defs><linearGradient id="tf2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--green)" stop-opacity=".22"/><stop offset="100%" stop-color="var(--green)" stop-opacity="0"/></linearGradient></defs>
+          <path d="M20 30.5 76 54.2 132 20 188 83.2 244 101.6 300 120 300 140 20 140 Z" fill="url(#tf2)"/>
+          <path d="M20 30.5 76 54.2 132 20 188 83.2 244 101.6 300 120" fill="none" stroke="var(--green)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="300" cy="120" r="4.2" fill="var(--green)" stroke="var(--surface)" stroke-width="2.5"/></svg>
+          <div class="trend-axis"><span>Jan</span><span>Fev</span><span>Mar</span><span>Abr</span><span>Mai</span><span>Jun</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INPUTS -->
+  <section class="sec">
+    <div class="sec__title"><h2>Campos & ações</h2><span class="tag">PhoneInput · OAuthButton · Stepper</span></div>
+    <div class="comp-grid">
+      <div class="frame"><div class="frame__bar"><span class="frame__name">PhoneInput</span><span class="frame__hint">:focus-within</span></div>
+        <div class="frame__body col"><div class="field"><label class="field__label">WhatsApp</label><div class="input"><span class="input__prefix">🇧🇷 +55</span><input type="tel" value="11 9 8765-4032"></div></div></div>
+      </div>
+      <div class="frame"><div class="frame__bar"><span class="frame__name">OAuthButton</span><span class="frame__hint">Google</span></div>
+        <div class="frame__body col"><button class="oauth-btn"><svg class="g-mark" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.2-4.8 3.2-7.8Z"/><path fill="#34A853" d="M12 23c2.9 0 5.4-1 7.2-2.6l-3.6-2.7c-1 .7-2.2 1-3.6 1-2.8 0-5.1-1.9-6-4.4H2.3v2.8A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M6 14.3a6.6 6.6 0 0 1 0-4.2V7.3H2.3a11 11 0 0 0 0 9.8L6 14.3Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .5 4.1 1.6l3.1-3.1A11 11 0 0 0 12 1 11 11 0 0 0 2.3 7.3L6 10.1c.9-2.6 3.2-4.7 6-4.7Z"/></svg>Conectar Google Sheets</button></div>
+      </div>
+      <div class="frame"><div class="frame__bar"><span class="frame__name">Stepper · MonthSelector</span><span class="frame__hint">onboarding · header</span></div>
+        <div class="frame__body col" style="gap:18px;align-items:center"><div class="stepper"><span class="step is-done"></span><span class="step is-active"></span><span class="step"></span></div><button class="month-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Junho 2026<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:13px"><path d="m6 9 6 6 6-6"/></svg></button></div>
+      </div>
+    </div>
+  </section>
+</div>
+<script src="scripts/theme.js"></script>
+</body>
+</html>
