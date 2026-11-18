@@ -27,7 +27,7 @@ flowchart LR
 ## Stack
 
 - **Backend:** Node.js 22, Express
-- **LLM:** Groq (Llama 3.1 8B para classificar, Llama 3.3 70B para extrair e gerar relatórios)
+- **LLM:** Groq (gpt-oss-20b para classificar, gpt-oss-120b para extrair e gerar relatórios; trocáveis por `GROQ_MODEL_FAST` e `GROQ_MODEL_SMART`)
 - **WhatsApp:** Baileys
 - **Dados:** Google Sheets API
 - **Agendamento:** node-cron
