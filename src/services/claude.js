@@ -7,13 +7,25 @@ const logger = require('../utils/logger');
 
 const client = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-const MODEL_FAST = 'llama-3.1-8b-instant';
-const MODEL_SMART = 'llama-3.3-70b-versatile';
+// Os Llama 3.1 8B e 3.3 70B sairam do plano gratuito do Groq em nov/2026 (404
+// model_not_found). Os modelos ficam configuraveis para a proxima troca nao exigir deploy
+// de codigo.
+const MODEL_FAST = process.env.GROQ_MODEL_FAST || 'openai/gpt-oss-20b';
+const MODEL_SMART = process.env.GROQ_MODEL_SMART || 'openai/gpt-oss-120b';
+
+// Os gpt-oss raciocinam antes de responder, e esses tokens contam no limite de saida.
+// Com esforco baixo e folga no limite, a resposta nao chega cortada.
+const REASONING = { reasoning_effort: 'low' };
+
+function stripCodeFence(text) {
+  return text.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '').trim();
+}
 
 async function classify(message) {
   const response = await client.chat.completions.create({
     model: MODEL_FAST,
-    max_tokens: 10,
+    ...REASONING,
+    max_tokens: 512,
     messages: [
       { role: 'system', content: CLASSIFY_SYSTEM },
       { role: 'user', content: message },
@@ -29,14 +41,15 @@ async function extract(message, dateToday) {
 
   const response = await client.chat.completions.create({
     model: MODEL_SMART,
-    max_tokens: 300,
+    ...REASONING,
+    max_tokens: 1024,
     messages: [
       { role: 'system', content: system },
       { role: 'user', content: message },
     ],
   });
 
-  const text = response.choices[0].message.content.trim();
+  const text = stripCodeFence(response.choices[0].message.content.trim());
   try {
     return JSON.parse(text);
   } catch {
@@ -48,7 +61,8 @@ async function extract(message, dateToday) {
 async function report(data) {
   const response = await client.chat.completions.create({
     model: MODEL_SMART,
-    max_tokens: 500,
+    ...REASONING,
+    max_tokens: 2048,
     messages: [
       { role: 'system', content: REPORT_SYSTEM },
       { role: 'user', content: JSON.stringify(data) },
@@ -63,14 +77,15 @@ async function extractReminder(message) {
 
   const response = await client.chat.completions.create({
     model: MODEL_SMART,
-    max_tokens: 200,
+    ...REASONING,
+    max_tokens: 1024,
     messages: [
       { role: 'system', content: system },
       { role: 'user', content: message },
     ],
   });
 
-  const text = response.choices[0].message.content.trim();
+  const text = stripCodeFence(response.choices[0].message.content.trim());
   try {
     return JSON.parse(text);
   } catch {
